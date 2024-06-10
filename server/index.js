@@ -11,5 +11,5 @@ mongoose.connect(db)
 
 
 app.use(authRouter);
-app.get('/', (req, res) => res.send('Fire nodejs project '))
+// app.get('/', (req, res) => res.send('Fire nodejs project '))
 app.listen(port, "0.0.0.0", () => console.log(`connected  on port ${port}!`))
