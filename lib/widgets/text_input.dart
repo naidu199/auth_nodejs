@@ -26,6 +26,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
       borderRadius: BorderRadius.circular(10.0),
     );
     return TextField(
+      style: const TextStyle(color: Colors.white),
       controller: widget.textEditingController,
       decoration: InputDecoration(
           labelText: widget.hintText,

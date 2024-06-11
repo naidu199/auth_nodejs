@@ -5,10 +5,12 @@ class User {
   final String email;
   final String username;
   final String token;
+  final String password;
 
   User(
       {required this.id,
       required this.email,
+      required this.password,
       required this.username,
       required this.token});
 
@@ -16,6 +18,7 @@ class User {
     return <String, dynamic>{
       'id': id,
       'email': email,
+      'password': password,
       'username': username,
       'token': token,
     };
@@ -25,6 +28,7 @@ class User {
     return User(
       id: map['_id'] as String,
       email: map['email'] as String,
+      password: map['password'] as String,
       username: map['username'] as String,
       token: map['token'] as String,
     );

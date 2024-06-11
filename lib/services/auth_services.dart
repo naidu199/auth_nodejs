@@ -13,14 +13,25 @@ class Authservices {
     required String username,
   }) async {
     try {
-      User user = User(id: '', email: email, username: username, token: '');
+      User user = User(
+          id: '',
+          email: email,
+          password: password,
+          username: username,
+          token: '');
+
+      final uri = Uri.parse("${Const.url}api/signup");
 
       http.Response response = await http.post(
-          Uri.parse("${Const.url}/api/signup"),
-          body: user.toJson(),
-          headers: <String, String>{
-            'Content-Type': 'application/json;charset=UTF-8',
-          });
+        uri,
+        body: user.toJson(),
+        headers: <String, String>{
+          "Accept": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Access-Control-Allow-Origin, Accept",
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
 
       httpErrorHandle(
         response: response,
@@ -31,6 +42,7 @@ class Authservices {
       );
     } catch (e) {
       showSnackBar(context, e.toString());
+      // print(e.toString());
     }
   }
 }
