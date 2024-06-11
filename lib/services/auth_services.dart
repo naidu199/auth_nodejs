@@ -1,4 +1,7 @@
 import 'package:auth_nodejs_backend/model/user.dart';
+import 'package:auth_nodejs_backend/utils/const.dart';
+import 'package:auth_nodejs_backend/utils/error_handle.dart';
+import 'package:auth_nodejs_backend/utils/snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,8 +15,22 @@ class Authservices {
     try {
       User user = User(id: '', email: email, username: username, token: '');
 
-      http.Response response = await http
-          .post(Uri.parse("localhost:3000/api/signup"), body: user.toJson());
-    } catch (e) {}
+      http.Response response = await http.post(
+          Uri.parse("${Const.url}/api/signup"),
+          body: user.toJson(),
+          headers: <String, String>{
+            'Content-Type': 'application/json;charset=UTF-8',
+          });
+
+      httpErrorHandle(
+        response: response,
+        context: context,
+        onSuccess: () {
+          showSnackBar(context, "Account created login ");
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
   }
 }

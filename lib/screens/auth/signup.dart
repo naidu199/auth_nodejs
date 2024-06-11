@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:auth_nodejs_backend/routes/app_routes.dart';
+import 'package:auth_nodejs_backend/services/auth_services.dart';
 import 'package:auth_nodejs_backend/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController usernamecontroller = TextEditingController();
   Uint8List? profileImage;
   bool _islaoding = false;
-
+  final Authservices _authservices = Authservices();
   @override
   void dispose() {
     super.dispose();
@@ -30,11 +31,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     usernamecontroller.dispose();
   }
 
-  void signupUser() async {
+  void signupUser() {
     setState(() {
       _islaoding = true;
     });
-
+    _authservices.signupUser(
+        context: context,
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        username: usernamecontroller.text.trim());
     setState(() {
       _islaoding = false;
     });
