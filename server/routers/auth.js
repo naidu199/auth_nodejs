@@ -16,10 +16,10 @@ authRouter.post('/api/signup', async (req, res) => {
 			return res.status(400).json({ msg: 'Email already exists' });
 		}
 
-		// Hash the password
+
 		const hashPass = await bcryptjs.hash(password, 8);
 
-		// Create new user
+
 		let user = new User({ email, password: hashPass, username });
 		user = await user.save();
 
@@ -40,13 +40,11 @@ authRouter.post('/api/signin', async (req, res) => {
 			return res.status(400).json({ msg: 'User does not exist' });
 		}
 
-		// Check if password matches
 		const isMatch = await bcryptjs.compare(password, existingUser.password);
 		if (!isMatch) {
 			return res.status(400).json({ msg: 'Incorrect password' });
 		}
 
-		// Create and return JWT token
 		const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET);
 		res.status(200).json({ token, ...existingUser._doc });
 	} catch (err) {
