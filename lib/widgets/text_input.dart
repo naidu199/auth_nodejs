@@ -33,7 +33,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
           labelStyle: const TextStyle(color: primaryColor),
           border: inputBorder,
           focusedBorder: inputBorder,
-          // enabledBorder: inputBorder,
+         
           fillColor: mobileBackgroundColor,
           filled: true,
           contentPadding: const EdgeInsets.all(10),
