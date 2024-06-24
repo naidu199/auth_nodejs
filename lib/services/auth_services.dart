@@ -25,8 +25,9 @@ class Authservices {
           username: username,
           token: '');
 
+      
       final uri = Uri.parse("${Const.url}api/signup");
-
+      
       http.Response response = await http.post(
         uri,
         body: user.toJson(),
@@ -47,7 +48,7 @@ class Authservices {
       );
     } catch (e) {
       showSnackBar(context, e.toString());
-      // print(e.toString());
+      print(e.toString());
     }
   }
 
