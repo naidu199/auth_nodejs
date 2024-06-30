@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 const authRouter = express.Router();
 
-// Sign up route
+// SignUp route
 authRouter.post('/api/signup', async (req, res) => {
 	try {
 		const { username, email, password } = req.body;
@@ -29,7 +29,7 @@ authRouter.post('/api/signup', async (req, res) => {
 	}
 });
 
-// Sign in route
+// SignIn route
 authRouter.post('/api/signin', async (req, res) => {
 	try {
 		const { email, password } = req.body;
